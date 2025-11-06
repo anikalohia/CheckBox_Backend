@@ -9,6 +9,7 @@ import cors from 'cors';
 import userRouter from './routes/userroute.js'  
 import authRouter from './routes/authroute.js'
 import dotenv from "dotenv";
+import taskRouter from './routes/taskroute.js';
 dotenv.config();
 
 
@@ -28,6 +29,7 @@ app.use(cookieParser())
 
 app.use('/api/auth',authRouter)
 app.use('/api/user',userRouter)
+app.use('/api/task',taskRouter)
 app.get('/homepage',async (req,res)=>{
     let taskmanager=await taskmodel.find({});
     res.render('homepage',{taskmanager});
