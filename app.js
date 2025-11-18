@@ -2,15 +2,19 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
 import taskmodel from './models/task.js';
-import { resolveSoa } from 'dns';
-import task from './models/task.js';
 import cors from 'cors';
 import userRouter from './routes/userroute.js'  
 import authRouter from './routes/authroute.js'
 import dotenv from "dotenv";
 import taskRouter from './routes/taskroute.js';
 dotenv.config();
+
+// connect to MongoDB
+mongoose.connect(process.env.MONGO_URL)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('MongoDB connection error:', err));
 
 
 const app = express();
